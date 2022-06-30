@@ -884,6 +884,7 @@ class Display extends EventDispatcher {
     _updateDocumentOptions(options) {
         const data = document.documentElement.dataset;
         data.ankiEnabled = `${options.anki.enable}`;
+        data.waniKaniEnabled = `${options.waniKani.enable}`;
         data.resultOutputMode = `${options.general.resultOutputMode}`;
         data.glossaryLayoutMode = `${options.general.glossaryLayoutMode}`;
         data.compactTags = `${options.general.compactTags}`;

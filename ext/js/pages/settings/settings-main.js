@@ -153,6 +153,9 @@ async function setupGenericSettingsController(genericSettingController) {
         const mecabController = new MecabController();
         mecabController.prepare();
 
+        const waniKaniController = new WaniKaniController(settingsController, dictionaryImportController);
+        waniKaniController.prepare();
+
         const collapsibleDictionaryController = new CollapsibleDictionaryController(settingsController);
         collapsibleDictionaryController.prepare();
 

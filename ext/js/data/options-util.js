@@ -336,6 +336,11 @@ class OptionsUtil {
                 kanji: {deck: '', model: '', fields: {}},
                 duplicateScope: 'collection',
                 fieldTemplates: null
+            }, 
+
+            waniKani: {
+                enable: false,
+                apiKey: ''
             }
         };
     }
@@ -357,6 +362,7 @@ class OptionsUtil {
         combine(options.anki, defaults.anki);
         combine(options.anki.terms, defaults.anki.terms);
         combine(options.anki.kanji, defaults.anki.kanji);
+        combine(options.waniKani, defaults.waniKani);
 
         return options;
     }

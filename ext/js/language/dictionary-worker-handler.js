@@ -19,11 +19,13 @@
  * DictionaryDatabase
  * DictionaryImporter
  * DictionaryWorkerMediaLoader
+ * DictionaryWorkerWaniKaniLoader
  */
 
 class DictionaryWorkerHandler {
     constructor() {
         this._mediaLoader = new DictionaryWorkerMediaLoader();
+        this._waniKaniLoader = new DictionaryWorkerWaniKaniLoader();
     }
 
     prepare() {
@@ -46,6 +48,9 @@ class DictionaryWorkerHandler {
                 break;
             case 'getImageDetails.response':
                 this._mediaLoader.handleMessage(params);
+                break;
+            case 'loadWaniKaniDictionary':
+                this._onMessageWithProgress(params, this._loadWaniKaniDictionary.bind(this));
                 break;
         }
     }
@@ -103,5 +108,9 @@ class DictionaryWorkerHandler {
         const dictionaryDatabase = new DictionaryDatabase();
         await dictionaryDatabase.prepare();
         return dictionaryDatabase;
+    }
+
+    async _loadWaniKaniDictionary({apiKey}, onProgress) {
+        return await this._waniKaniLoader.loadDictionary(apiKey, onProgress);
     }
 }

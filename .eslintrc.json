@@ -227,6 +227,7 @@
                 "ext/js/comm/clipboard-monitor.js",
                 "ext/js/comm/clipboard-reader.js",
                 "ext/js/comm/mecab.js",
+                "ext/js/comm/wanikani-apiv2.js",
                 "ext/js/data/anki-util.js",
                 "ext/js/data/database.js",
                 "ext/js/data/json-schema.js",
@@ -271,6 +272,7 @@
                 "ext/js/language/dictionary-importer.js",
                 "ext/js/language/dictionary-worker-handler.js",
                 "ext/js/language/dictionary-worker-media-loader.js",
+                "ext/js/language/dictionary-worker-wanikani-loader.js",
                 "ext/js/media/media-util.js"
             ],
             "env": {

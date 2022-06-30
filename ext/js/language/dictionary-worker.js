@@ -42,6 +42,10 @@ class DictionaryWorker {
         return this._invoke('getDictionaryCounts', {dictionaryNames, getTotal}, [], null);
     }
 
+    loadWaniKaniDictionary(apiKey, onProgress) {
+        return this._invoke('loadWaniKaniDictionary', {apiKey}, [], onProgress);
+    }
+
     // Private
 
     _invoke(action, params, transfer, onProgress, formatResult) {

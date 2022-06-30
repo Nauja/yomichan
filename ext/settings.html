@@ -34,6 +34,7 @@
             <a href="#!text-parsing"     class="button outline-item"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="text-parsing"></span></span><span class="outline-item-label">Text Parsing</span></a>
             <a href="#!translation"      class="button outline-item advanced-only"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="translation"></span></span><span class="outline-item-label">Translation</span></a>
             <a href="#!anki"             class="button outline-item"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="note-card"></span></span><span class="outline-item-label">Anki</span></a>
+            <a href="#!wanikani"         class="button outline-item"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="wanikani"></span></span><span class="outline-item-label">WaniKani</span></a>
             <a href="#!clipboard"        class="button outline-item"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="clipboard"></span></span><span class="outline-item-label">Clipboard</span></a>
             <a href="#!shortcuts"        class="button outline-item"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="keyboard"></span></span><span class="outline-item-label">Shortcuts</span></a>
             <a href="#!backup"           class="button outline-item"><span class="outline-item-left"><span class="outline-item-icon icon" data-icon="backup"></span></span><span class="outline-item-label">Backup</span></a>
@@ -1850,6 +1851,97 @@
                 <button class="icon-button"><span class="icon-button-inner"><span class="icon" data-icon="material-right-arrow"></span></span></button>
             </div>
         </div></div>
+    </div>
+
+    <!-- WaniKani -->
+    <div>
+        <div class="heading-container">
+            <div class="heading-container-icon"><span class="icon" data-icon="wanikani"></span></div>
+            <div class="heading-container-left"><h2 id="wanikani"><a href="#!wanikani">WaniKani</a></h2></div>
+            <div class="heading-container-right"><a tabindex="0" class="more-toggle more-only heading-link-light" data-parent-distance="3">Info&hellip;</a></div>
+        </div>
+        <div class="heading-description more" hidden>
+            <p>
+                Yomichan supports automatic flashcard creation for <a href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer">Anki</a>,
+                a free application designed to assist in remembering information.
+                This feature requires installation of the <a href="https://foosoft.net/projects/anki-connect/" target="_blank" rel="noopener noreferrer">AnkiConnect</a> plugin.
+            </p>
+            <p>
+                <a tabindex="0" class="more-toggle" data-parent-distance="3">Less&hellip;</a>
+            </p>
+        </div>
+    </div>
+    <div class="settings-group">
+        <div class="settings-item">
+            <div class="settings-item-inner">
+                <div class="settings-item-left">
+                    <div class="settings-item-label">Enable WaniKani integration</div>
+                    <div class="settings-item-description">
+                        <span>Connection status:</span>
+                        <span id="wanikani-error-message">&hellip;</span> <a tabindex="0" id="wanikani-error-message-details-toggle" hidden>Details&hellip;</a>
+                    </div>
+                </div>
+                <div class="settings-item-right">
+                    <label class="toggle"><input type="checkbox" data-setting="waniKani.enable"><span class="toggle-body"><span class="toggle-track"></span><span class="toggle-knob"></span></span></label>
+                </div>
+            </div>
+            <div class="settings-item-children" id="wanikani-error-message-details-container" hidden>
+                <p>
+                    <a tabindex="0" id="wanikani-error-log">Log error to console</a>
+                </p>
+                <p class="danger-text" id="wanikani-error-invalid-response-info" hidden>
+                    Attempting to connect to Anki can sometimes return an error message which includes "Invalid response",
+                    which may indicate that the value of the <em>AnkiConnect server address</em> option is incorrect.
+                    Resetting it to the default value may fix issues that are occurring.
+                </p>
+                <div class="danger-text" id="wanikani-error-message-details"></div>
+            </div>
+            <div class="settings-item-children" data-show-for-os="mac">
+                <p class="warning-text">
+                    <strong>Notice for macOS users:</strong>
+                    If Yomichan has issues connecting to AnkiConnect, it may be necessary to adjust adjust some system settings.
+                    See <a href="https://foosoft.net/projects/anki-connect/#notes-for-mac-os-x-users" target="_blank" rel="noopener noreferrer">this link</a> for details.
+                </p>
+            </div>
+        </div>
+        <div class="settings-item">
+            <div class="settings-item-inner settings-item-inner-wrappable">
+                <div class="settings-item-left">
+                    <div class="settings-item-label">Personal Access Token</div>
+                    <div class="settings-item-description">
+                        Enter you API Version 2 Token.
+                        <a tabindex="0" class="more-toggle more-only" data-parent-distance="4">More&hellip;</a>
+                    </div>
+                </div>
+                <div class="settings-item-right">
+                    <input type="password" placeholder="00000000-0000-0000-0000-000000000000" spellcheck="false" autocomplete="off" data-setting="waniKani.apiKey" id="wanikani-api-key-input">
+                </div>
+            </div>
+            <div class="settings-item-children more" hidden>
+                <p>
+                    This token can be found in your <a href="https://www.wanikani.com/settings/personal_access_tokens" target="_blank" rel="noopener noreferrer">account settings</a>.
+                    If you don't already have one, you will have to generate a new token.
+                </p>
+                <p>
+                    <a tabindex="0" class="more-toggle" data-parent-distance="3">Less&hellip;</a>
+                </p>
+            </div>
+        </div>
+        <div class="settings-item">
+            <div class="settings-item-inner">
+                <div class="settings-item-left">
+                    <div class="settings-item-label">Dictionary</div>
+                    <div class="settings-item-description">
+                        <span>
+                            Generate a dictionary from WaniKani API and import it to your list
+                        </span>
+                    </div>
+                </div>
+                <div class="settings-item-right">
+                    <button id="wanikani-import" class="low-emphasis">Import</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Clipboard -->
@@ -3758,6 +3850,7 @@
 <script src="/js/comm/anki-connect.js"></script>
 <script src="/js/comm/api.js"></script>
 <script src="/js/comm/cross-frame-api.js"></script>
+<script src="/js/comm/wanikani-apiv2.js"></script>
 <script src="/js/data/anki-note-builder.js"></script>
 <script src="/js/data/anki-util.js"></script>
 <script src="/js/data/database.js"></script>
@@ -3815,6 +3908,7 @@
 <script src="/js/pages/settings/status-footer.js"></script>
 <script src="/js/pages/settings/storage-controller.js"></script>
 <script src="/js/pages/settings/translation-text-replacements-controller.js"></script>
+<script src="/js/pages/settings/wanikani-controller.js"></script>
 <script src="/js/templates/template-patcher.js"></script>
 <script src="/js/templates/template-renderer-proxy.js"></script>
 

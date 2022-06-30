@@ -81,9 +81,9 @@ class DictionaryImportController {
 
     _onImportFileChange(e) {
         const node = e.currentTarget;
-        const files = [...node.files];
+        const files = [...node.files].map(_ => ({input: _, type: 'file'}));
         node.value = null;
-        this._importDictionaries(files);
+        this.importDictionaries(files);
     }
 
     async _purgeDatabase() {
@@ -115,7 +115,7 @@ class DictionaryImportController {
         }
     }
 
-    async _importDictionaries(files) {
+    async importDictionaries(files) {
         if (this._modifying) { return; }
 
         const statusFooter = this._statusFooter;
@@ -212,7 +212,7 @@ class DictionaryImportController {
     }
 
     async _importDictionary(file, importDetails, onProgress) {
-        const archiveContent = await this._readFile(file);
+        const archiveContent = file.type === 'file' ? (await this._readFile(file.input)) : file.input;
         const {result, errors} = await new DictionaryWorker().importDictionary(archiveContent, importDetails, onProgress);
         yomichan.api.triggerDatabaseUpdated('dictionary', 'import');
         const errors2 = await this._addDictionarySettings(result.sequenced, result.title);

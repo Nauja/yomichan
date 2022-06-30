@@ -70,6 +70,7 @@
                             "dictionaries",
                             "parsing",
                             "anki",
+                            "waniKani",
                             "sentenceParsing",
                             "inputs",
                             "clipboard",
@@ -998,6 +999,23 @@
                                         "type": "string",
                                         "enum": ["browse", "edit"],
                                         "default": "browse"
+                                    },
+                                    "apiKey": {
+                                        "type": "string",
+                                        "default": ""
+                                    }
+                                }
+                            },
+                            "waniKani": {
+                                "type": "object",
+                                "required": [
+                                    "enable",
+                                    "apiKey"
+                                ],
+                                "properties": {
+                                    "enable": {
+                                        "type": "boolean",
+                                        "default": false
                                     },
                                     "apiKey": {
                                         "type": "string",

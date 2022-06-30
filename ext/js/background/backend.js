@@ -36,6 +36,7 @@
  * StringUtil
  * Translator
  * wanakana
+ * WaniKaniAPIV2
  */
 
 class Backend {
@@ -48,6 +49,7 @@ class Backend {
             database: this._dictionaryDatabase
         });
         this._anki = new AnkiConnect();
+        this._waniKani = new WaniKaniAPIV2();
         this._mecab = new Mecab();
         this._clipboardReader = new ClipboardReader({
             // eslint-disable-next-line no-undef
@@ -1003,6 +1005,11 @@ class Backend {
         this._anki.server = options.anki.server;
         this._anki.enabled = options.anki.enable && enabled;
         this._anki.apiKey = apiKey;
+
+        let {waniKaniApiKey} = options.waniKani;
+        if (waniKaniApiKey === '') { waniKaniApiKey = null; }
+        this._waniKani.enabled = options.waniKani.enable && enabled;
+        this._waniKani.apiKey = waniKaniApiKey;
 
         this._mecab.setEnabled(options.parsing.enableMecabParser && enabled);
 

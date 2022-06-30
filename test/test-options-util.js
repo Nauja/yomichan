@@ -472,6 +472,9 @@ function createProfileOptionsUpdatedTestData1() {
             noteGuiMode: 'browse',
             apiKey: ''
         },
+        waniKani: {
+            apiKey: ''
+        },
         sentenceParsing: {
             scanExtent: 200,
             terminationCharacterMode: 'custom',

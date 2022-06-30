@@ -21,6 +21,7 @@
 
 self.importScripts(
     '/lib/jszip.min.js',
+    '/js/comm/wanikani-apiv2.js',
     '/js/core.js',
     '/js/data/database.js',
     '/js/data/json-schema.js',
@@ -29,6 +30,7 @@ self.importScripts(
     '/js/language/dictionary-importer.js',
     '/js/language/dictionary-worker-handler.js',
     '/js/language/dictionary-worker-media-loader.js',
+    '/js/language/dictionary-worker-wanikani-loader.js',
     '/js/media/media-util.js'
 );
 
